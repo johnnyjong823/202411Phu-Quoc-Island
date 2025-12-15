@@ -1,18 +1,18 @@
 // Service Worker for 2024 富國島渡假之旅 PWA
-const CACHE_NAME = 'phuquoc-2024-v3';
+const CACHE_NAME = 'phuquoc-2024-v4';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/day1.html',
-  '/day2.html',
-  '/day3.html',
-  '/day4.html',
-  '/day5.html',
-  '/css/style.css',
-  '/js/main.js',
-  '/manifest.json',
-  '/images/group-photo.jpg',
-  '/images/五天天氣.jpg',
+  './',
+  './index.html',
+  './day1.html',
+  './day2.html',
+  './day3.html',
+  './day4.html',
+  './day5.html',
+  './css/style.css',
+  './js/main.js',
+  './manifest.json',
+  './images/group-photo.jpg',
+  './images/五天天氣.jpg',
   'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap'
 ];
 
@@ -75,7 +75,7 @@ self.addEventListener('fetch', (event) => {
             }
             // If not in cache, return offline page for navigation requests
             if (event.request.mode === 'navigate') {
-              return caches.match('/index.html');
+              return caches.match('./index.html');
             }
           });
       })
