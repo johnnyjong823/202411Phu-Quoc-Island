@@ -1,6 +1,31 @@
 // 2024 富國島渡假之旅 - 主要 JavaScript
+// 熱帶海島玻璃擬態主題
 
 document.addEventListener('DOMContentLoaded', function() {
+    // ========== 氣泡動畫生成 ==========
+    function createBubbles() {
+        const container = document.querySelector('.bubbles');
+        if (!container) return;
+        
+        // 清除現有氣泡
+        container.innerHTML = '';
+        
+        for (let i = 0; i < 30; i++) {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            const size = Math.random() * 30 + 10;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.animationDuration = (Math.random() * 8 + 6) + 's';
+            bubble.style.animationDelay = Math.random() * 15 + 's';
+            container.appendChild(bubble);
+        }
+    }
+    
+    // 初始化氣泡
+    createBubbles();
+
     // ========== 導航列漢堡選單 ==========
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -141,18 +166,18 @@ document.addEventListener('DOMContentLoaded', function() {
         fadeInObserver.observe(el);
     });
 
-    // ========== 導航列滾動效果 ==========
+    // ========== 導航列滾動效果（玻璃擬態） ==========
     const navbar = document.querySelector('.navbar');
     let lastScrollY = window.scrollY;
 
     window.addEventListener('scroll', () => {
         if (navbar) {
             if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+                navbar.style.background = 'rgba(10, 22, 40, 0.95)';
+                navbar.style.boxShadow = '0 4px 30px rgba(0, 206, 209, 0.15)';
             } else {
-                navbar.style.background = 'var(--white)';
-                navbar.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+                navbar.style.background = 'rgba(10, 22, 40, 0.85)';
+                navbar.style.boxShadow = 'none';
             }
         }
         lastScrollY = window.scrollY;
@@ -182,4 +207,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ========== 頁面載入完成 ==========
     console.log('🏝️ 2024 富國島渡假之旅網站載入完成！');
+    console.log('🌊 熱帶海島玻璃擬態主題已啟用');
 });
