@@ -52,6 +52,8 @@
 
 html {
     scroll-behavior: smooth;
+    /* 禁止網頁縮放 */
+    touch-action: pan-x pan-y;
 }
 
 body {
@@ -62,6 +64,9 @@ body {
     line-height: 1.6;
     padding-bottom: 80px;
     min-height: 100vh;
+    /* 禁止雙擊縮放 */
+    touch-action: pan-x pan-y;
+    -ms-touch-action: pan-x pan-y;
 }
 
 .container {
@@ -675,6 +680,8 @@ section h2::after {
     justify-content: center;
     align-items: center;
     padding: 20px;
+    /* 允許 Lightbox 內縮放 */
+    touch-action: pinch-zoom;
 }
 
 .lightbox.active {
@@ -683,13 +690,21 @@ section h2::after {
 
 .lightbox-close {
     position: absolute;
-    top: 20px;
-    right: 30px;
+    top: 15px;
+    right: 15px;
     color: var(--sand-white);
-    font-size: 3rem;
+    font-size: 2.5rem;
     cursor: pointer;
     transition: var(--transition);
     z-index: 2001;
+    background: rgba(0,0,0,0.5);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
 }
 
 .lightbox-close:hover {
@@ -698,12 +713,32 @@ section h2::after {
 }
 
 #lightboxImg {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 95%;
+    max-height: 95%;
     object-fit: contain;
     border-radius: var(--border-radius);
     border: 1px solid var(--glass-border);
     box-shadow: 0 20px 60px rgba(0,206,209,0.3);
+    /* 允許圖片縮放 */
+    touch-action: pinch-zoom;
+}
+
+/* 手機版 Lightbox 更大顯示 */
+@media (max-width: 768px) {
+    .lightbox {
+        padding: 10px;
+    }
+    
+    #lightboxImg {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 8px;
+    }
+    
+    .lightbox-close {
+        top: 10px;
+        right: 10px;
+    }
 }
 
 /* ========== Day 頁面專用（海洋主題） ========== */
@@ -854,16 +889,16 @@ section h2::after {
 
     /* 手機版 Day 頁面優化 */
     .container {
-        padding: 0 12px;
+        padding: 0 8px;
     }
 
     .day-content .container {
-        padding: 0 10px;
+        padding: 0 6px;
     }
 
     .attraction-section {
-        padding: 20px 15px;
-        margin-bottom: 20px;
+        padding: 18px 10px;
+        margin-bottom: 18px;
         border-radius: 12px;
     }
 
@@ -913,16 +948,16 @@ section h2::after {
 @media (max-width: 480px) {
     /* 更小螢幕優化 */
     .container {
-        padding: 0 8px;
+        padding: 0 5px;
     }
 
     .day-content .container {
-        padding: 0 8px;
+        padding: 0 4px;
     }
 
     .attraction-section {
-        padding: 18px 12px;
-        margin-bottom: 15px;
+        padding: 15px 8px;
+        margin-bottom: 12px;
     }
 
     .attraction-section h2 {
