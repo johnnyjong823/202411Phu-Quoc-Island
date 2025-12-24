@@ -109,13 +109,21 @@
                 <h3>🎬 Day 2 精彩影片</h3>
                 <p class="video-description">跳島探險的精彩回憶 🚤</p>
                 <div class="video-container youtube-container">
+                    <!-- 一般瀏覽器使用 iframe -->
                     <iframe 
-                        src="https://www.youtube.com/embed/WmFHqvXQcDU?rel=0" 
+                        class="youtube-iframe"
+                        src="https://www.youtube.com/embed/WmFHqvXQcDU?rel=0&playsinline=1" 
                         title="Day 2 精彩影片" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
                     </iframe>
+                    <!-- PWA 模式使用縮圖連結 -->
+                    <a href="https://www.youtube.com/watch?v=WmFHqvXQcDU" target="_blank" rel="noopener" class="youtube-thumbnail-link">
+                        <img src="https://img.youtube.com/vi/WmFHqvXQcDU/maxresdefault.jpg" alt="Day 2 精彩影片" class="youtube-thumbnail">
+                        <div class="youtube-play-btn"></div>
+                        <span class="youtube-hint">點擊觀看影片</span>
+                    </a>
                 </div>
             </div>
 

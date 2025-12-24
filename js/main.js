@@ -205,6 +205,30 @@ document.addEventListener('DOMContentLoaded', function() {
         lazyImages.forEach(img => imageObserver.observe(img));
     }
 
+    // ========== PWA 模式偵測與 YouTube 處理 ==========
+    function handlePWAYouTube() {
+        // 偵測是否為 PWA 獨立模式（從主畫面啟動）
+        const isPWA = window.matchMedia('(display-mode: standalone)').matches || 
+                      window.navigator.standalone === true ||
+                      document.referrer.includes('android-app://');
+        
+        // 偵測是否為 iOS
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        
+        if (isPWA || (isIOS && window.navigator.standalone)) {
+            // PWA 模式：隱藏 iframe，顯示縮圖連結
+            document.querySelectorAll('.youtube-iframe').forEach(iframe => {
+                iframe.style.display = 'none';
+            });
+            document.querySelectorAll('.youtube-thumbnail-link').forEach(link => {
+                link.style.display = 'block';
+            });
+            console.log('📱 PWA 模式偵測：已切換為 YouTube 縮圖連結模式');
+        }
+    }
+    
+    handlePWAYouTube();
+
     // ========== 頁面載入完成 ==========
     console.log('🏝️ 2024 富國島渡假之旅網站載入完成！');
     console.log('🌊 熱帶海島玻璃擬態主題已啟用');

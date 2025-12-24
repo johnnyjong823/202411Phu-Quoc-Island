@@ -86,13 +86,21 @@
                 <h3>🎬 出發宣示影片</h3>
                 <p class="video-description">出發前的約定：這趟旅程我們要和平相處，不吵架！🤝</p>
                 <div class="video-container youtube-container">
+                    <!-- 一般瀏覽器使用 iframe -->
                     <iframe 
-                        src="https://www.youtube.com/embed/L6eu8HNQg10?rel=0" 
+                        class="youtube-iframe"
+                        src="https://www.youtube.com/embed/L6eu8HNQg10?rel=0&playsinline=1" 
                         title="出發宣示影片" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
                     </iframe>
+                    <!-- PWA 模式使用縮圖連結 -->
+                    <a href="https://www.youtube.com/watch?v=L6eu8HNQg10" target="_blank" rel="noopener" class="youtube-thumbnail-link">
+                        <img src="https://img.youtube.com/vi/L6eu8HNQg10/maxresdefault.jpg" alt="出發宣示影片" class="youtube-thumbnail">
+                        <div class="youtube-play-btn"></div>
+                        <span class="youtube-hint">點擊觀看影片</span>
+                    </a>
                 </div>
             </div>
 
