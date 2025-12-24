@@ -4,8 +4,8 @@
   "description": "2024年富國島五日渡假之旅紀念網站",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#1a535c",
-  "theme_color": "#ff6b35",
+  "background_color": "#0A1628",
+  "theme_color": "#0A1628",
   "orientation": "portrait-primary",
   "icons": [
     {

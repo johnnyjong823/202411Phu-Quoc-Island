@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#ff6b35">
+    <meta name="theme-color" content="#0A1628">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Day 1 - 桃園✈富國島 | 2024 富國島渡假之旅</title>
     <link rel="stylesheet" href="css/style.css">
@@ -13,8 +13,19 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
     <link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    <!-- 氣泡效果 -->
+    <div class="bubbles"></div>
+    
+    <!-- 波浪效果 -->
+    <div class="waves">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+
     <!-- 導航列 -->
     <nav class="navbar">
         <div class="nav-container">
@@ -23,7 +34,7 @@
                 <span class="hamburger"></span>
             </button>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">首頁</a></li>
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首頁</a></li>
                 <li><a href="day1.html" class="nav-link active">Day 1</a></li>
                 <li><a href="day2.html" class="nav-link">Day 2</a></li>
                 <li><a href="day3.html" class="nav-link">Day 3</a></li>
@@ -112,27 +123,27 @@
     <!-- 手機版底部導航 -->
     <nav class="mobile-bottom-nav">
         <a href="index.html" class="bottom-nav-item">
-            <span class="nav-icon">🏠</span>
+            <span class="nav-icon"><i class="fas fa-home"></i></span>
             <span class="nav-label">首頁</span>
         </a>
         <a href="day1.html" class="bottom-nav-item active">
-            <span class="nav-icon">1️⃣</span>
+            <span class="nav-icon"><i class="fas fa-plane-departure"></i></span>
             <span class="nav-label">D1</span>
         </a>
         <a href="day2.html" class="bottom-nav-item">
-            <span class="nav-icon">2️⃣</span>
+            <span class="nav-icon"><i class="fas fa-water"></i></span>
             <span class="nav-label">D2</span>
         </a>
         <a href="day3.html" class="bottom-nav-item">
-            <span class="nav-icon">3️⃣</span>
+            <span class="nav-icon"><i class="fas fa-sun"></i></span>
             <span class="nav-label">D3</span>
         </a>
         <a href="day4.html" class="bottom-nav-item">
-            <span class="nav-icon">4️⃣</span>
+            <span class="nav-icon"><i class="fas fa-hippo"></i></span>
             <span class="nav-label">D4</span>
         </a>
         <a href="day5.html" class="bottom-nav-item">
-            <span class="nav-icon">5️⃣</span>
+            <span class="nav-icon"><i class="fas fa-plane-arrival"></i></span>
             <span class="nav-label">D5</span>
         </a>
     </nav>

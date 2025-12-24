@@ -1,17 +1,46 @@
 /* 2024 富國島渡假之旅 - 樣式表 */
+/* 熱帶海島玻璃擬態主題 (Tropical Glassmorphism) */
 
 /* ========== 基礎設定 ========== */
 :root {
-    --primary-color: #ff6b35;
-    --secondary-color: #1a535c;
-    --accent-color: #4ecdc4;
-    --background-color: #f7fff7;
-    --text-color: #2d3436;
-    --light-text: #636e72;
-    --white: #ffffff;
-    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
-    --border-radius: 12px;
+    /* 主色調 */
+    --ocean-blue: #00CED1;         /* 海洋藍綠 - 標題、強調文字 */
+    --sand-white: #FFF8E7;         /* 沙灘白 - 主要文字 */
+    --coral-orange: #FF6B6B;       /* 珊瑚橘紅 - 按鈕、互動元素 */
+    --palm-green: #2ECC71;         /* 棕櫚綠 - 次要強調 */
+    
+    /* 背景色 - 淺藍海洋 */
+    --deep-ocean: #0F2942;         /* 深海藍 - 主背景 */
+    --ocean-mid: #1A3A5C;          /* 中層海洋 - 漸層用 */
+    --ocean-light: #2A5F8F;        /* 淺海藍 - 漸層用 */
+    --sunset-gold: #FFD93D;        /* 夕陽金 - 特殊強調 */
+    
+    /* 玻璃效果 */
+    --glass-bg: rgba(255,255,255,0.12);     /* 玻璃背景 */
+    --glass-border: rgba(255,255,255,0.25); /* 玻璃邊框 */
+    --glass-water: rgba(0,206,209,0.15);    /* 水波玻璃 */
+    
+    /* 功能色 */
+    --success-green: #2ECC71;
+    --danger-red: #E74C3C;
+    
+    /* 越南元素色 */
+    --vietnam-red: #DA251D;
+    --vietnam-yellow: #FFCD00;
+    --lotus-pink: #FF69B4;
+    
+    /* 舊變數映射（相容性） */
+    --primary-color: var(--coral-orange);
+    --secondary-color: var(--ocean-blue);
+    --accent-color: var(--ocean-blue);
+    --background-color: var(--deep-ocean);
+    --text-color: var(--sand-white);
+    --light-text: rgba(255, 248, 231, 0.8);
+    --white: var(--sand-white);
+    
+    --shadow: 0 4px 20px rgba(0,206,209,0.1);
+    --shadow-hover: 0 12px 35px rgba(0,206,209,0.2);
+    --border-radius: 20px;
     --transition: all 0.3s ease;
 }
 
@@ -26,11 +55,13 @@ html {
 }
 
 body {
-    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    font-family: 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
+    background: linear-gradient(180deg, var(--deep-ocean) 0%, var(--ocean-mid) 40%, var(--ocean-light) 100%);
+    background-attachment: fixed;
+    color: var(--sand-white);
     line-height: 1.6;
-    padding-bottom: 70px;
+    padding-bottom: 80px;
+    min-height: 100vh;
 }
 
 .container {
@@ -39,14 +70,16 @@ body {
     padding: 0 20px;
 }
 
-/* ========== 導航列 ========== */
+/* ========== 導航列（玻璃效果） ========== */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: var(--white);
-    box-shadow: var(--shadow);
+    background: rgba(10, 22, 40, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
     z-index: 1000;
     height: 60px;
 }
@@ -64,8 +97,9 @@ body {
 .nav-logo {
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--ocean-blue);
     text-decoration: none;
+    text-shadow: 0 0 10px rgba(0,206,209,0.3);
 }
 
 .nav-menu {
@@ -77,17 +111,19 @@ body {
 .nav-link {
     display: block;
     padding: 10px 15px;
-    color: var(--text-color);
+    color: var(--sand-white);
     text-decoration: none;
     font-weight: 500;
-    border-radius: 8px;
+    border-radius: 12px;
     transition: var(--transition);
+    opacity: 0.8;
 }
 
 .nav-link:hover,
 .nav-link.active {
-    background-color: var(--primary-color);
-    color: var(--white);
+    background: var(--glass-water);
+    color: var(--ocean-blue);
+    opacity: 1;
 }
 
 .nav-toggle {
@@ -102,7 +138,7 @@ body {
     display: block;
     width: 25px;
     height: 3px;
-    background: var(--text-color);
+    background: var(--sand-white);
     position: relative;
     transition: var(--transition);
 }
@@ -113,14 +149,14 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: var(--text-color);
+    background: var(--sand-white);
     transition: var(--transition);
 }
 
 .hamburger::before { top: -8px; }
 .hamburger::after { top: 8px; }
 
-/* ========== 首頁橫幅 ========== */
+/* ========== 首頁橫幅（海洋主題） ========== */
 .hero {
     position: relative;
     min-height: 100vh;
@@ -128,7 +164,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    background: linear-gradient(180deg, 
+        rgba(10, 22, 40, 0.9) 0%, 
+        rgba(13, 33, 55, 0.8) 50%, 
+        rgba(26, 75, 110, 0.7) 100%);
     padding-top: 60px;
     overflow: hidden;
 }
@@ -139,44 +178,48 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: radial-gradient(ellipse at center bottom, rgba(0,206,209,0.15) 0%, transparent 70%);
 }
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     text-align: center;
-    color: var(--white);
+    color: var(--sand-white);
     padding: 40px 20px;
 }
 
 .hero-content h1 {
     font-size: clamp(1.8rem, 5vw, 3rem);
     margin-bottom: 15px;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    color: var(--sand-white);
 }
 
 .hero-subtitle {
     font-size: clamp(1rem, 3vw, 1.5rem);
     opacity: 0.9;
     margin-bottom: 10px;
+    color: var(--ocean-blue);
 }
 
 .hero-date {
     font-size: 1.2rem;
     opacity: 0.8;
     font-weight: 300;
+    color: var(--sunset-gold);
 }
 
 .group-photo-placeholder {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     width: 90%;
     max-width: 800px;
     margin: 20px auto;
     border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: var(--shadow-hover);
+    box-shadow: 0 8px 32px rgba(0,206,209,0.3);
+    border: 1px solid var(--glass-border);
 }
 
 .group-photo-placeholder img {
@@ -188,23 +231,37 @@ body {
 /* ========== 區塊標題 ========== */
 section {
     padding: 60px 0;
+    position: relative;
 }
 
 section h2 {
     font-size: clamp(1.5rem, 4vw, 2rem);
     text-align: center;
     margin-bottom: 40px;
-    color: var(--secondary-color);
+    color: var(--ocean-blue);
+    text-shadow: 0 0 20px rgba(0,206,209,0.3);
 }
 
-/* ========== 天氣區塊 ========== */
+/* 區塊標題裝飾線 */
+section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--coral-orange), var(--ocean-blue));
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* ========== 天氣區塊（玻璃效果） ========== */
 .weather-section {
-    background: var(--white);
+    background: transparent;
 }
 
 .weather-intro {
     text-align: center;
-    color: var(--light-text);
+    color: var(--sand-white);
+    opacity: 0.9;
     margin-bottom: 30px;
     max-width: 700px;
     margin-left: auto;
@@ -216,7 +273,8 @@ section h2 {
     margin: 0 auto;
     border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-hover);
+    border: 1px solid var(--glass-border);
 }
 
 .weather-image img {
@@ -225,14 +283,17 @@ section h2 {
     display: block;
 }
 
-/* ========== 簡介區塊 ========== */
+/* ========== 簡介區塊（玻璃擬態） ========== */
 .intro-section {
-    background: linear-gradient(135deg, var(--secondary-color), #2d6a72);
-    color: var(--white);
+    background: var(--glass-water);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .intro-section h2 {
-    color: var(--white);
+    color: var(--ocean-blue);
 }
 
 .intro-text {
@@ -241,9 +302,10 @@ section h2 {
     text-align: center;
     font-size: 1.1rem;
     line-height: 2;
+    color: var(--sand-white);
 }
 
-/* ========== 精選景點 ========== */
+/* ========== 精選景點（玻璃擬態卡片） ========== */
 .highlights-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -251,22 +313,26 @@ section h2 {
 }
 
 .highlight-card {
-    background: var(--white);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
     border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: var(--shadow);
     transition: var(--transition);
 }
 
 .highlight-card:hover {
     transform: translateY(-5px);
+    background: rgba(255,255,255,0.18);
     box-shadow: var(--shadow-hover);
+    border-color: var(--ocean-blue);
 }
 
 .card-image-placeholder {
     width: 100%;
     height: 200px;
-    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    background: linear-gradient(135deg, var(--ocean-light), var(--deep-ocean));
     overflow: hidden;
 }
 
@@ -286,19 +352,20 @@ section h2 {
 }
 
 .card-content h3 {
-    color: var(--secondary-color);
+    color: var(--ocean-blue);
     margin-bottom: 10px;
     font-size: 1.2rem;
 }
 
 .card-content p {
-    color: var(--light-text);
+    color: var(--sand-white);
+    opacity: 0.85;
     font-size: 0.95rem;
 }
 
-/* ========== 行程時間軸 ========== */
+/* ========== 行程時間軸（玻璃擬態） ========== */
 .itinerary-overview {
-    background: var(--white);
+    background: transparent;
 }
 
 .timeline {
@@ -314,7 +381,8 @@ section h2 {
     top: 0;
     bottom: 0;
     width: 3px;
-    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+    background: linear-gradient(to bottom, var(--coral-orange), var(--ocean-blue));
+    border-radius: 2px;
 }
 
 .timeline-item {
@@ -327,8 +395,8 @@ section h2 {
 .timeline-date {
     min-width: 80px;
     height: 40px;
-    background: var(--primary-color);
-    color: var(--white);
+    background: linear-gradient(135deg, var(--coral-orange) 0%, #FF8E53 100%);
+    color: white;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -337,24 +405,34 @@ section h2 {
     font-size: 0.9rem;
     position: relative;
     z-index: 1;
+    box-shadow: 0 4px 15px rgba(255,107,107,0.4);
 }
 
 .timeline-content {
     flex: 1;
-    background: var(--background-color);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
     padding: 20px;
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.timeline-content:hover {
+    background: rgba(255,255,255,0.18);
+    border-color: var(--ocean-blue);
 }
 
 .timeline-content h3 {
-    color: var(--secondary-color);
+    color: var(--ocean-blue);
     margin-bottom: 8px;
     font-size: 1.1rem;
 }
 
 .timeline-content p {
-    color: var(--light-text);
+    color: var(--sand-white);
+    opacity: 0.85;
     font-size: 0.95rem;
     margin-bottom: 15px;
 }
@@ -362,28 +440,35 @@ section h2 {
 .btn-view {
     display: inline-block;
     padding: 8px 20px;
-    background: var(--primary-color);
-    color: var(--white);
+    background: linear-gradient(135deg, var(--coral-orange) 0%, #FF8E53 100%);
+    color: white;
     text-decoration: none;
-    border-radius: 20px;
+    border-radius: 25px;
     font-size: 0.9rem;
     font-weight: 500;
     transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(255,107,107,0.3);
 }
 
 .btn-view:hover {
-    background: var(--secondary-color);
+    background: linear-gradient(135deg, #FF8E53 0%, var(--coral-orange) 100%);
     transform: translateX(5px);
+    box-shadow: 0 6px 20px rgba(255,107,107,0.4);
 }
 
-/* ========== 旅伴名單 ========== */
+/* ========== 旅伴名單（玻璃擬態） ========== */
 .members-section {
-    background: linear-gradient(135deg, #fff5f5, #ffe3e3);
+    background: var(--glass-water);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .members-intro {
     text-align: center;
-    color: var(--light-text);
+    color: var(--sand-white);
+    opacity: 0.9;
     margin-bottom: 30px;
 }
 
@@ -394,17 +479,21 @@ section h2 {
 }
 
 .couple-card {
-    background: var(--white);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
     padding: 25px;
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
     text-align: center;
     transition: var(--transition);
 }
 
 .couple-card:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-hover);
+    background: rgba(255,255,255,0.18);
+    border-color: var(--lotus-pink);
+    box-shadow: 0 8px 30px rgba(255,105,180,0.2);
 }
 
 .couple-icon {
@@ -421,11 +510,11 @@ section h2 {
 }
 
 .couple-names .male {
-    color: #3498db;
+    color: var(--ocean-blue);
 }
 
 .couple-names .female {
-    color: #e84393;
+    color: var(--lotus-pink);
 }
 
 .couple-names .heart {
@@ -438,39 +527,46 @@ section h2 {
     50% { transform: scale(1.2); }
 }
 
-/* ========== 頁尾 ========== */
+/* ========== 頁尾（玻璃效果） ========== */
 .footer {
-    background: var(--secondary-color);
-    color: var(--white);
+    background: rgba(10, 22, 40, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--glass-border);
+    color: var(--sand-white);
     padding: 40px 0;
     text-align: center;
 }
 
 .footer p {
     margin-bottom: 10px;
+    color: var(--ocean-blue);
 }
 
 .footer-note {
     opacity: 0.7;
     font-size: 0.9rem;
+    color: var(--sand-white);
 }
 
-/* ========== 手機底部導航 ========== */
+/* ========== 手機底部導航（玻璃效果） ========== */
 .mobile-bottom-nav {
     display: none;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background: var(--white);
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    background: rgba(10, 22, 40, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     z-index: 1000;
+    border-top: 1px solid var(--glass-border);
 }
 
 .mobile-bottom-nav {
     display: flex;
     justify-content: space-around;
-    padding: 8px 0;
+    padding: 10px 5px;
 }
 
 .bottom-nav-item {
@@ -478,16 +574,23 @@ section h2 {
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: var(--light-text);
-    padding: 5px 10px;
-    border-radius: 8px;
+    color: var(--sand-white);
+    padding: 8px 12px;
+    border-radius: 10px;
     transition: var(--transition);
+    opacity: 0.6;
+    font-size: 0.75em;
 }
 
 .bottom-nav-item.active,
 .bottom-nav-item:hover {
-    color: var(--primary-color);
-    background: rgba(255, 107, 53, 0.1);
+    opacity: 1;
+    background: var(--glass-water);
+}
+
+.bottom-nav-item.active .nav-icon,
+.bottom-nav-item:hover .nav-icon {
+    color: var(--coral-orange);
 }
 
 .nav-icon {
@@ -498,17 +601,22 @@ section h2 {
     font-size: 0.7rem;
     font-weight: 500;
     margin-top: 2px;
+    color: var(--sand-white);
 }
 
-/* ========== PWA 安裝提示 ========== */
+
+/* ========== PWA 安裝提示（玻璃效果） ========== */
 .pwa-install-prompt {
     display: none;
     position: fixed;
-    bottom: 80px;
+    bottom: 90px;
     left: 20px;
     right: 20px;
-    background: var(--secondary-color);
-    color: var(--white);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    color: var(--sand-white);
     padding: 15px 20px;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-hover);
@@ -523,24 +631,26 @@ section h2 {
 }
 
 #pwaInstall {
-    background: var(--primary-color);
-    color: var(--white);
+    background: linear-gradient(135deg, var(--coral-orange) 0%, #FF8E53 100%);
+    color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 20px;
+    border-radius: 25px;
     cursor: pointer;
     font-weight: 500;
     transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(255,107,107,0.3);
 }
 
 #pwaInstall:hover {
-    background: var(--accent-color);
+    background: linear-gradient(135deg, #FF8E53 0%, var(--coral-orange) 100%);
+    transform: translateY(-2px);
 }
 
 .close-prompt {
     background: none;
     border: none;
-    color: var(--white);
+    color: var(--sand-white);
     font-size: 1.5rem;
     cursor: pointer;
     opacity: 0.7;
@@ -549,9 +659,10 @@ section h2 {
 
 .close-prompt:hover {
     opacity: 1;
+    color: var(--coral-orange);
 }
 
-/* ========== Lightbox 燈箱 ========== */
+/* ========== Lightbox 燈箱（深海主題） ========== */
 .lightbox {
     display: none;
     position: fixed;
@@ -559,7 +670,7 @@ section h2 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(10, 22, 40, 0.98);
     z-index: 2000;
     justify-content: center;
     align-items: center;
@@ -574,7 +685,7 @@ section h2 {
     position: absolute;
     top: 20px;
     right: 30px;
-    color: var(--white);
+    color: var(--sand-white);
     font-size: 3rem;
     cursor: pointer;
     transition: var(--transition);
@@ -582,7 +693,7 @@ section h2 {
 }
 
 .lightbox-close:hover {
-    color: var(--primary-color);
+    color: var(--coral-orange);
     transform: rotate(90deg);
 }
 
@@ -590,25 +701,30 @@ section h2 {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 20px 60px rgba(0,206,209,0.3);
 }
 
-/* ========== Day 頁面專用 ========== */
+/* ========== Day 頁面專用（海洋主題） ========== */
 .day-hero {
-    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    background: linear-gradient(180deg, var(--deep-ocean) 0%, var(--ocean-mid) 50%, var(--ocean-light) 100%);
     padding: 100px 20px 60px;
     text-align: center;
-    color: var(--white);
+    color: var(--sand-white);
+    position: relative;
 }
 
 .day-hero h1 {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
     margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
 }
 
 .day-hero p {
     opacity: 0.9;
     font-size: 1.1rem;
+    color: var(--ocean-blue);
 }
 
 .day-content {
@@ -616,15 +732,23 @@ section h2 {
 }
 
 .schedule-item {
-    background: var(--white);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
     border-radius: var(--border-radius);
     padding: 30px;
     margin-bottom: 30px;
-    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.schedule-item:hover {
+    background: rgba(255,255,255,0.18);
+    border-color: var(--ocean-blue);
 }
 
 .schedule-item h3 {
-    color: var(--secondary-color);
+    color: var(--ocean-blue);
     margin-bottom: 15px;
     font-size: 1.3rem;
     display: flex;
@@ -633,7 +757,8 @@ section h2 {
 }
 
 .schedule-item p {
-    color: var(--light-text);
+    color: var(--sand-white);
+    opacity: 0.9;
     margin-bottom: 20px;
 }
 
@@ -648,14 +773,16 @@ section h2 {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     cursor: pointer;
     transition: var(--transition);
+    border: 1px solid var(--glass-border);
 }
 
 .photo-gallery img:hover {
     transform: scale(1.02);
     box-shadow: var(--shadow-hover);
+    border-color: var(--ocean-blue);
 }
 
 /* ========== 響應式設計 ========== */
@@ -666,10 +793,12 @@ section h2 {
         top: 60px;
         left: 0;
         right: 0;
-        background: var(--white);
+        background: rgba(10, 22, 40, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
         padding: 20px;
-        box-shadow: var(--shadow);
+        border-bottom: 1px solid var(--glass-border);
     }
 
     .nav-menu.active {
@@ -740,7 +869,7 @@ section h2 {
     }
 }
 
-/* ========== Day 頁面更多樣式 ========== */
+/* ========== Day 頁面更多樣式（海洋主題） ========== */
 .day-hero.with-bg-image {
     position: relative;
     background-size: cover;
@@ -755,7 +884,10 @@ section h2 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(26, 83, 92, 0.8), rgba(78, 205, 196, 0.7));
+    background: linear-gradient(180deg, 
+        rgba(10, 22, 40, 0.85) 0%, 
+        rgba(13, 33, 55, 0.75) 50%, 
+        rgba(26, 75, 110, 0.7) 100%);
 }
 
 .day-hero.with-bg-image h1,
@@ -767,30 +899,40 @@ section h2 {
 .day-subtitle {
     font-size: 1.2rem;
     opacity: 0.9;
+    color: var(--sunset-gold) !important;
 }
 
 .attraction-section {
-    background: var(--white);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
     border-radius: var(--border-radius);
     padding: 30px;
     margin-bottom: 30px;
-    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.attraction-section:hover {
+    background: rgba(255,255,255,0.18);
+    border-color: var(--ocean-blue);
 }
 
 .attraction-section h2,
 .attraction-section h3 {
-    color: var(--secondary-color);
+    color: var(--ocean-blue);
     margin-bottom: 20px;
 }
 
 .attraction-title {
     font-size: 1.3rem;
-    border-left: 4px solid var(--primary-color);
+    border-left: 4px solid var(--coral-orange);
     padding-left: 15px;
 }
 
 .attraction-section p {
-    color: var(--light-text);
+    color: var(--sand-white);
+    opacity: 0.9;
     line-height: 1.8;
     margin-bottom: 15px;
 }
@@ -799,22 +941,31 @@ section h2 {
     margin-bottom: 0;
 }
 
-/* 影片區塊 */
+/* 影片區塊（玻璃擬態） */
 .video-section {
-    background: var(--white);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
     border-radius: var(--border-radius);
     padding: 30px;
     margin-bottom: 30px;
-    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.video-section:hover {
+    background: rgba(255,255,255,0.18);
+    border-color: var(--ocean-blue);
 }
 
 .video-section h3 {
-    color: var(--secondary-color);
+    color: var(--ocean-blue);
     margin-bottom: 15px;
 }
 
 .video-description {
-    color: var(--light-text);
+    color: var(--sand-white);
+    opacity: 0.9;
     margin-bottom: 20px;
 }
 
@@ -825,7 +976,8 @@ section h2 {
     margin: 0 auto;
     border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-hover);
+    border: 1px solid var(--glass-border);
 }
 
 .video-container video {
@@ -834,9 +986,9 @@ section h2 {
     display: block;
 }
 
-/* 照片區塊 */
+/* 照片區塊（玻璃擬態） */
 .photo-gallery h3 {
-    color: var(--secondary-color);
+    color: var(--ocean-blue);
     margin-bottom: 20px;
 }
 
@@ -851,6 +1003,13 @@ section h2 {
     overflow: hidden;
     box-shadow: var(--shadow);
     aspect-ratio: 4/3;
+    border: 1px solid var(--glass-border);
+    transition: var(--transition);
+}
+
+.gallery-item:hover {
+    border-color: var(--ocean-blue);
+    box-shadow: var(--shadow-hover);
 }
 
 .gallery-item img {
@@ -865,7 +1024,7 @@ section h2 {
     transform: scale(1.05);
 }
 
-/* 頁面導航 */
+/* 頁面導航（珊瑚橘漸層按鈕） */
 .page-navigation {
     display: flex;
     justify-content: space-between;
@@ -876,18 +1035,19 @@ section h2 {
 .page-nav-btn {
     display: inline-block;
     padding: 12px 25px;
-    background: var(--primary-color);
-    color: var(--white);
+    background: linear-gradient(135deg, var(--coral-orange) 0%, #FF8E53 100%);
+    color: white;
     text-decoration: none;
     border-radius: 25px;
     font-weight: 500;
     transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(255,107,107,0.4);
 }
 
 .page-nav-btn:hover {
-    background: var(--secondary-color);
+    background: linear-gradient(135deg, #FF8E53 0%, var(--coral-orange) 100%);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-hover);
+    box-shadow: 0 6px 25px rgba(255,107,107,0.5);
 }
 
 /* ========== 桌面版隱藏底部導航 ========== */
@@ -899,4 +1059,139 @@ section h2 {
     body {
         padding-bottom: 0;
     }
+}
+
+/* ========== 波浪動畫 ========== */
+.waves {
+    position: fixed;
+    bottom: 70px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%2300CED1" fill-opacity="0.3" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,218.7C672,235,768,245,864,234.7C960,224,1056,192,1152,181.3C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+    background-size: 50% 100%;
+    animation: wave 8s linear infinite;
+}
+
+.wave:nth-child(2) {
+    bottom: 10px;
+    opacity: 0.5;
+    animation: wave 6s linear reverse infinite;
+}
+
+.wave:nth-child(3) {
+    bottom: 20px;
+    opacity: 0.3;
+    animation: wave 10s linear infinite;
+}
+
+@keyframes wave {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ========== 氣泡動畫 ========== */
+.bubbles {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -50px;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(0,206,209,0.3));
+    border-radius: 50%;
+    animation: rise linear infinite;
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100vh) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* ========== 椰子樹裝飾 ========== */
+.palm-decoration {
+    position: fixed;
+    bottom: 80px;
+    font-size: 4em;
+    opacity: 0.2;
+    z-index: 0;
+    animation: sway 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.palm-left {
+    left: -10px;
+    transform: scaleX(-1);
+}
+
+.palm-right {
+    right: -10px;
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+/* ========== 淡入動畫 ========== */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.animated-element {
+    animation: fadeIn 0.4s ease;
+}
+
+/* ========== 閃爍效果（陽光） ========== */
+@keyframes shimmer {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+.sun-shimmer {
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ========== 蓮花分隔線 ========== */
+.lotus-divider {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 1.5em;
+    opacity: 0.6;
+}
+
+.lotus-divider::before {
+    content: '🪷 ✦ 🪷';
 }
