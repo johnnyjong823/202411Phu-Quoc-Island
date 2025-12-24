@@ -851,9 +851,106 @@ section h2::after {
     body {
         padding-bottom: 80px;
     }
+
+    /* 手機版 Day 頁面優化 */
+    .container {
+        padding: 0 12px;
+    }
+
+    .day-content .container {
+        padding: 0 10px;
+    }
+
+    .attraction-section {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+    }
+
+    .attraction-title {
+        font-size: 1.1rem;
+        padding-left: 12px;
+    }
+
+    .video-section {
+        padding: 20px 12px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+    }
+
+    .video-container {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+
+    .video-container.youtube-container {
+        border-radius: 10px;
+    }
+
+    .video-container.youtube-container iframe {
+        border-radius: 10px;
+    }
+
+    .photo-gallery {
+        padding: 20px 15px;
+    }
+
+    .gallery-grid {
+        gap: 10px;
+    }
+
+    .page-navigation {
+        margin-top: 25px;
+        padding: 0;
+    }
+
+    .page-nav-btn {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
+    /* 更小螢幕優化 */
+    .container {
+        padding: 0 8px;
+    }
+
+    .day-content .container {
+        padding: 0 8px;
+    }
+
+    .attraction-section {
+        padding: 18px 12px;
+        margin-bottom: 15px;
+    }
+
+    .attraction-section h2 {
+        font-size: 1.3rem;
+    }
+
+    .attraction-title {
+        font-size: 1rem;
+    }
+
+    .attraction-section p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .video-section {
+        padding: 15px 10px;
+        margin-bottom: 15px;
+    }
+
+    .video-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .video-description {
+        font-size: 0.9rem;
+    }
+
     .members-grid {
         grid-template-columns: 1fr;
     }
